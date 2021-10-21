@@ -3,7 +3,7 @@ import { em, rem, rgba } from 'polished'
 
 // Font
 export const font = {
-	family: `'Graphik', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif`,
+	family: `'Lato', 'Graphik', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif`,
 	base: '16px',
 	'base-height': '4px'
 }
@@ -17,6 +17,7 @@ export const sp = {
 	2: '16px',
 	2.5: '20px',
 	3: '24px',
+	3.5: '28px',
 	4: '32px',
 	5: '40px',
 	6: '48px',
@@ -56,7 +57,8 @@ export const device = {
 export const brand = {
 	'primary-black': '#181d36',
 	'primary-white': '#fff',
-	primary: '#00b3e5'
+	primary: '#00b3e5',
+	secondary: '#00b3e5'
 }
 export const neutral = {
 	'00': brand['primary-white'],
@@ -99,6 +101,7 @@ export const alpha = {
 	'00-a80': rgba(neutral['00'], 0.8),
 	'00-a90': rgba(neutral['00'], 0.9)
 }
+
 export const red = {
 	// System Red
 	'05': '#fef8f4',
@@ -594,14 +597,32 @@ export const container = {
 	`
 }
 
+export const invisible = `
+	z-index: -1;
+	opacity: 0;
+	visibility: hidden;
+	transition: visiblity 0.3s ease, opacity 0.3s ease;
+`
+
+export const visible = `
+	position: relative;
+	z-index: 1;
+	opacity: 1;
+	visibility: visible;
+	transition: visiblity 0.3s ease, opacity 0.3s ease;
+`
+
 export const text = {
 	light: css`
 		color: ${neutral['00']};
 	`
 }
 
-export const grid = css`
-	display: grid;
-	grid-template-columns: repeat(12, 1fr);
-	column-gap: var(--grid-gutter);
-`
+export const grid = (rows = '12', size = '1fr', gutter, rowGap) => {
+	return css`
+		display: grid;
+		grid-template-columns: repeat(${rows}, ${size});
+		column-gap: ${gutter || 'var(--grid-gutter)'};
+		row-gap: ${rowGap || 'var(--grid-gutter)'};
+	`
+}

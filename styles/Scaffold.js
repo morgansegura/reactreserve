@@ -19,14 +19,14 @@ export const Scaffold = styled.div`
         --lane-gutter: ${include.sp['8']};
     `}
 
-    ${include.media.xl`
-        --size: 'Desktop: 1376px - 1799px';
-        --lane-gutter: 136px;
-    `}
-
     ${include.media.lg`
         --columns: 12;
         --size: 'Small Desktop: 1024px - 1366px';
+    `}
+
+    ${include.media.xl`
+        --size: 'Desktop: 1376px - 1799px';
+        --lane-gutter: 136px;
     `}
 
     ${include.media.xxl`

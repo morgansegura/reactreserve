@@ -2,13 +2,16 @@ import Link from 'next/link'
 import Router, { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import { Container } from 'components/core'
-import { Logo, Menu, Nav, NavItem, Header as Wrapper } from '@styles/Header'
+import {
+	FooterCopyright,
+	Logo,
+	Menu,
+	Nav,
+	NavItem,
+	Footer as Wrapper
+} from '@styles/Footer'
 
-Router.onRouteChangeStart = () => NProgress.start()
-Router.onRouteChangeComplete = () => NProgress.done()
-Router.onRouteChangeError = () => NProgress.done()
-
-export default function Header() {
+const Footer = () => {
 	const router = useRouter()
 	const user = true
 
@@ -76,8 +79,13 @@ export default function Header() {
 							</>
 						)}
 					</Nav>
+					<FooterCopyright>
+						&copy; {new Date().getFullYear()} / All rights reserved.
+					</FooterCopyright>
 				</Menu>
 			</Wrapper>
 		</Container>
 	)
 }
+
+export default Footer

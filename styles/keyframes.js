@@ -44,19 +44,31 @@ export const zoomOut = keyframes`
 
 export const fadeIn = keyframes`
   0% {
-    opacity: 0;
+        opacity: 0;
+        visibility: hidden;
+        z-index: -1;
+        position: absolute;
   }
   100% {
-    opacity: 1;
+        opacity: 1;
+        visibility: visible;
+        z-index: unset;
+        position: unset;
   }
 `
 
 export const fadeOut = keyframes`
   0% {
-    opacity: 0;
+        opacity: 1;
+        visibility: visible;
+        z-index: unset;
+        position: unset
   }
   100% {
-    opacity: 1;
+        opacity: 0;
+        visibility: hidden;
+        z-index: -1;
+        position: absolute;
   }
 `
 
@@ -327,5 +339,22 @@ export const slowFade = keyframes`
   }
   100% {
     transform:scale(0);
+  }
+`
+
+export const productCardSlideDown = keyframes`
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+`
+export const productCardSlideUp = keyframes`
+  0% {
+    height: 0;
+  }
+  100% {
+    height: auto;
   }
 `

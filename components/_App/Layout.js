@@ -1,6 +1,7 @@
 import Head from 'next/head'
 
-import { HeadContent, Header, Container, Content } from 'components/_App'
+import { Footer, HeadContent, Header } from 'components/_App'
+import { Container } from 'components/core'
 
 function Layout({ children }) {
 	return (
@@ -10,7 +11,7 @@ function Layout({ children }) {
 				{/* Stylesheets */}
 				<link
 					rel="stylesheet"
-					href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+					href="https://fonts.googleapis.com/css?family=Lato:300,400,500,700&display=swap"
 				/>
 
 				<link rel="stylesheet" type="text/css" href="/styles.css" />
@@ -18,9 +19,8 @@ function Layout({ children }) {
 				<title>ReactReserve</title>
 			</Head>
 			<Header />
-			<Container>
-				<Content>{children}</Content>
-			</Container>
+			<Container>{children}</Container>
+			<Footer />
 		</>
 	)
 }

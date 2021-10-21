@@ -1,7 +1,7 @@
-import { Scaffold as Container } from 'styles/Scaffold.styled'
+import { Scaffold as Wrapper } from 'styles/Scaffold'
 
 const Scaffold = ({ ...rest }) => {
-	return <Container {...rest} />
+	return <Wrapper {...rest} />
 }
 
 export default Scaffold

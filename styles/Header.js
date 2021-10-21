@@ -1,13 +1,30 @@
 import styled from 'styled-components'
 import * as include from 'styles/utilities'
 
-export const Wrapper = styled.div`
+export const Header = styled.div`
 	background-color: ${include.neutral['00']};
 	margin-top: ${include.sp['1.5']};
 	margin-bottom: ${include.sp['2.5']};
-	padding-top: ${include.sp['2']};
-	padding-bottom: ${include.sp['2']};
 	${include.radius['md']};
+	padding-top: ${include.sp['2']};
+	padding-right: ${include.sp['3']};
+	padding-bottom: ${include.sp['2']};
+	padding-left: ${include.sp['3']};
+
+	${include.media['lg']`
+		padding-right: ${include.sp['4']};
+		padding-left: ${include.sp['4']};
+	`}
+
+	${include.media['xl']`
+		padding-right: ${include.sp['5']};
+		padding-left: ${include.sp['5']};
+	`}
+
+	${include.media['xxl']`
+		padding-right: ${include.sp['6']};
+		padding-left: ${include.sp['6']};
+	`}
 
 	a {
 		text-decoration: none;

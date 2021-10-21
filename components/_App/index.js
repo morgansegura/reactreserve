@@ -1,5 +1,4 @@
-export { default as Container } from './Container'
-export { Content as Content } from './Container'
+export { default as Footer } from './Footer'
 export { default as HeadContent } from './HeadContent'
 export { default as Header } from './Header'
 export { default as Layout } from './Layout'

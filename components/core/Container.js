@@ -1,5 +1,5 @@
 // Styled
-import * as s from 'styles/Container.styled'
+import * as s from '@styles/Container'
 
 export const Content = ({ children, as = 'div', ...props }) => {
 	// sm:default, md, lg, xl
