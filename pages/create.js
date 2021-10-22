@@ -1,12 +1,17 @@
 import React from 'react'
+import toast from 'react-hot-toast'
+import { WaveSpinner } from 'react-spinners-kit'
 import {
 	Button,
 	TextInput,
 	MediaInput,
 	NumberInput,
 	TextArea,
-	Content
+	Content,
+	LoadingScreen as Screen
 } from 'components/core'
+import axios from 'axios'
+import baseUrl from 'utils/baseUrl'
 
 const INITIAL_PRODUCT = {
 	name: '',
@@ -19,6 +24,7 @@ const CreateProduct = () => {
 	const [product, setProduct] = React.useState(INITIAL_PRODUCT)
 	const [mediaPreview, setMediaPreview] = React.useState('')
 	const [success, setSuccess] = React.useState(false)
+	const [loading, setLoading] = React.useState(false)
 
 	const handleChange = e => {
 		const { name, value, files } = e.target
@@ -30,15 +36,36 @@ const CreateProduct = () => {
 		}
 	}
 
-	const handleSubmit = e => {
+	const handleImageUpload = async () => {
+		const data = new FormData()
+		data.append('file', product.media)
+		data.append('upload_preset', 'reactreserve')
+		data.append('cloudname', 'segurallc')
+		const response = await axios.post(process.env.CLOUDINARY_URL, data)
+		const mediaUrl = response.data.url
+		return mediaUrl
+	}
+
+	const handleSubmit = async e => {
 		e.preventDefault()
+		setLoading(true)
+		const mediaUrl = await handleImageUpload()
+		const url = `${baseUrl}/api/product`
+		const { name, price, description } = product
+		const payload = { name, price, description, mediaUrl }
+		await axios.post(url, payload)
+		toast(`Product ${product.name} uploaded.`)
 		setProduct(INITIAL_PRODUCT)
 		setMediaPreview('')
 		setSuccess(true)
+		setLoading(false)
 	}
-
+	;``
 	return (
 		<>
+			<Screen text="Loading...">
+				<WaveSpinner color="#3678b4" loading={!loading} size={50} />
+			</Screen>
 			<form
 				style={{
 					paddingTop: '2rem',
@@ -92,7 +119,7 @@ const CreateProduct = () => {
 					/>
 					<br />
 
-					<Button theme="primary" type="submit">
+					<Button theme="primary" disabled={loading} type="submit">
 						Create Product
 					</Button>
 				</Content>

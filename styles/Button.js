@@ -103,6 +103,15 @@ export const ButtonType = styled(props => props.as)`
 						: include.neutral['60']};
 			  `}
 
+	${({ disabled }) =>
+		disabled === true &&
+		css`
+			pointer-events: none;
+			background-color: ${include.neutral['10']};
+			border: 1px solid ${include.neutral['00']};
+			color: ${include.neutral['40']};
+		`}
+
 	${({ radius }) =>
 		radius === 'md'
 			? css`

@@ -1,3 +1,4 @@
+import toast, { Toaster } from 'react-hot-toast'
 import Head from 'next/head'
 
 import { Footer, HeadContent, Header } from 'components/_App'
@@ -21,6 +22,19 @@ function Layout({ children }) {
 			<Header />
 			<Container>{children}</Container>
 			<Footer />
+			<Toaster
+				position="bottom-center"
+				reverseOrder={false}
+				gutter={8}
+				toastOptions={{
+					duration: 5000,
+					style: {
+						borderRadius: '10px',
+						background: '#333',
+						color: '#fff'
+					}
+				}}
+			/>
 		</>
 	)
 }
