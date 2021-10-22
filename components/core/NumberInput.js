@@ -3,10 +3,9 @@ import {
 	InputControl,
 	NumbersInput,
 	Label,
-	Icon,
 	FormGroup,
 	StaticPlaceholder
-} from 'styles/Inputs'
+} from 'styles/inputs/NumberInput'
 
 const NumberInput = ({
 	type,

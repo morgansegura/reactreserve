@@ -1,17 +1,21 @@
 import React from 'react'
 import toast from 'react-hot-toast'
 import { WaveSpinner } from 'react-spinners-kit'
+import axios from 'axios'
+import { baseUrl, catchErrors } from 'utils'
 import {
 	Button,
-	TextInput,
+	Content,
+	Grid,
+	Image,
+	LoadingScreen as Screen,
 	MediaInput,
 	NumberInput,
 	TextArea,
-	Content,
-	LoadingScreen as Screen
+	TextInput
 } from 'components/core'
-import axios from 'axios'
-import baseUrl from 'utils/baseUrl'
+
+import { ImageContainer, Img } from 'styles/Image'
 
 const INITIAL_PRODUCT = {
 	name: '',
@@ -25,6 +29,7 @@ const CreateProduct = () => {
 	const [mediaPreview, setMediaPreview] = React.useState('')
 	const [success, setSuccess] = React.useState(false)
 	const [loading, setLoading] = React.useState(false)
+	const [error, setError] = React.useState('')
 
 	const handleChange = e => {
 		const { name, value, files } = e.target
@@ -34,6 +39,10 @@ const CreateProduct = () => {
 		} else {
 			setProduct(prevState => ({ ...prevState, [name]: value }))
 		}
+	}
+
+	const removeImage = () => {
+		setMediaPreview('')
 	}
 
 	const handleImageUpload = async () => {
@@ -47,25 +56,33 @@ const CreateProduct = () => {
 	}
 
 	const handleSubmit = async e => {
-		e.preventDefault()
-		setLoading(true)
-		const mediaUrl = await handleImageUpload()
-		const url = `${baseUrl}/api/product`
-		const { name, price, description } = product
-		const payload = { name, price, description, mediaUrl }
-		await axios.post(url, payload)
-		toast(`Product ${product.name} uploaded.`)
-		setProduct(INITIAL_PRODUCT)
-		setMediaPreview('')
-		setSuccess(true)
-		setLoading(false)
+		try {
+			e.preventDefault()
+			setLoading(true)
+			const mediaUrl = await handleImageUpload()
+			const url = `${baseUrl}/api/product`
+			const { name, price, description } = product
+			const payload = { name, price, description, mediaUrl }
+			await axios.post(url, payload)
+			toast.success(`Product saved.`)
+			setProduct(INITIAL_PRODUCT)
+			removeImage()
+			setSuccess(true)
+		} catch (err) {
+			catchErrors(err, setError)
+			toast.error(`${error.message || error}`)
+			console.log(error)
+		} finally {
+			setLoading(false)
+		}
 	}
-	;``
 	return (
 		<>
-			<Screen text="Loading...">
-				<WaveSpinner color="#3678b4" loading={!loading} size={50} />
-			</Screen>
+			{loading && (
+				<Screen text={`Saving...`}>
+					<WaveSpinner color="#3678b4" loading={loading} size={50} />
+				</Screen>
+			)}
 			<form
 				style={{
 					paddingTop: '2rem',
@@ -100,13 +117,13 @@ const CreateProduct = () => {
 						name="media"
 						label="Media"
 						vertical
+						media={product.media}
+						mediaPreview={mediaPreview}
+						removePreview={removeImage}
 						placeholder="Upload Image"
 						value={product.media}
 						onChange={handleChange}
 					/>
-					{mediaPreview && (
-						<img src={mediaPreview} alt={product.name} />
-					)}
 					<br />
 					<TextArea
 						name="description"

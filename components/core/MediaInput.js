@@ -1,28 +1,97 @@
 import React from 'react'
 import {
+	Wrapper,
+	Left,
+	Right,
 	InputControl,
 	MediaFile,
 	Label,
 	FormGroup,
-	MediaPlaceholder
-} from 'styles/Inputs'
+	MediaPlaceholder,
+	MediaDescription
+} from 'styles/inputs/MediaInput'
 
-const MediaInput = ({ type, name, label, placeholder, ...props }) => {
+import { Button, Image } from 'components/core'
+
+const MediaInput = ({
+	type,
+	name,
+	label,
+	placeholder,
+	media,
+	mediaPreview,
+	...props
+}) => {
+	const {
+		name: mediaName,
+		size: mediaSize,
+		type: mediaType,
+		lastModified
+	} = media
+
+	console.log(media)
+
 	return (
-		<FormGroup {...props}>
-			{label && <Label>{label}</Label>}
-			<InputControl>
-				<MediaFile>
-					<input
-						name={name}
-						type="file"
-						accept="image/*"
-						content="Select Image"
-					/>
-					<MediaPlaceholder>{placeholder}</MediaPlaceholder>
-				</MediaFile>
-			</InputControl>
-		</FormGroup>
+		<Wrapper preview={Boolean(mediaPreview)}>
+			<Left>
+				{Boolean(mediaPreview) && (
+					<>
+						{label && (
+							<Label style={{ paddingBottom: '1rem' }}>
+								{label}
+							</Label>
+						)}
+						<Image src={mediaPreview} alt="" />
+					</>
+				)}
+			</Left>
+			<Right>
+				<FormGroup {...props}>
+					{Boolean(mediaPreview) === false ? (
+						label && <Label>{label}</Label>
+					) : (
+						<MediaDescription>
+							<h4>Media Details:</h4>
+							<p>
+								<b>File Name:</b> {mediaName}
+							</p>
+							<p>
+								<b>Last Modified:</b> {lastModified}
+							</p>
+							<p>
+								<b>Media Type:</b> {mediaType}
+							</p>
+							<p>
+								<b>File Size:</b> {mediaSize}
+							</p>
+						</MediaDescription>
+					)}
+					<InputControl>
+						<MediaFile>
+							<>
+								{Boolean(mediaPreview) ? (
+									<MediaPlaceholder>
+										Remove Image
+									</MediaPlaceholder>
+								) : (
+									<>
+										<input
+											name={name}
+											type="file"
+											accept="image/*"
+											content="Select Image"
+										/>
+										<MediaPlaceholder>
+											{placeholder}
+										</MediaPlaceholder>
+									</>
+								)}
+							</>
+						</MediaFile>
+					</InputControl>
+				</FormGroup>
+			</Right>
+		</Wrapper>
 	)
 }
 

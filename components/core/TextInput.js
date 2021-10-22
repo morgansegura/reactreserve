@@ -5,7 +5,7 @@ import {
 	Input,
 	Label,
 	FormGroup
-} from 'styles/Inputs'
+} from '@styles/inputs/TextInput'
 
 const TextInput = ({ type, name, value, label, placeholder, ...props }) => {
 	const inputRef = React.useRef()

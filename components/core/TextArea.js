@@ -5,7 +5,7 @@ import {
 	TextAreaInput,
 	Label,
 	FormGroup
-} from 'styles/Inputs'
+} from '@styles/inputs/TextArea'
 
 const TextArea = ({
 	type,
