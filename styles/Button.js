@@ -35,12 +35,8 @@ export const ButtonType = styled(props => props.as)`
 					padding: 6px 16px;
 			  `}
 
-	${props => {
-		console.log({ props })
-	}}
-
 	${props =>
-		props.type === 'primary'
+		props.theme === 'primary'
 			? css`
 					background-color: ${include.cyan['50']};
 					border: 1px solid ${include.cyan['50']};
@@ -48,7 +44,7 @@ export const ButtonType = styled(props => props.as)`
 						? readableColor(include.cyan['50'])
 						: include.cyan['40']};
 			  `
-			: props.type === 'secondary'
+			: props.theme === 'secondary'
 			? css`
 					background-color: ${include.yellow['20']};
 					border: 1px solid ${include.yellow['20']};
@@ -56,7 +52,7 @@ export const ButtonType = styled(props => props.as)`
 						? readableColor(include.yellow['20'])
 						: include.yellow['20']};
 			  `
-			: props.type === 'danger'
+			: props.theme === 'danger'
 			? css`
 					background-color: ${include.state['danger-50']};
 					border: 1px solid ${include.state['danger-50']};
@@ -64,7 +60,7 @@ export const ButtonType = styled(props => props.as)`
 						? readableColor(include.state['danger-50'])
 						: include.state['danger-50']};
 			  `
-			: props.type === 'warning'
+			: props.theme === 'warning'
 			? css`
 					background-color: ${include.state['warning-50']};
 					border: 1px solid ${include.state['warning-50']};
@@ -72,7 +68,7 @@ export const ButtonType = styled(props => props.as)`
 						? readableColor(include.state['warning-50'])
 						: include.state['warning-50']};
 			  `
-			: props.type === 'success'
+			: props.theme === 'success'
 			? css`
 					background-color: ${include.state['success-50']};
 					border: 1px solid ${include.state['success-50']};
@@ -80,7 +76,7 @@ export const ButtonType = styled(props => props.as)`
 						? readableColor(include.state['success-50'])
 						: include.state['success-50']};
 			  `
-			: props.type === 'dark'
+			: props.theme === 'dark'
 			? css`
 					background-color: ${include.neutral['90']};
 					border: 1px solid ${include.neutral['90']};
@@ -88,7 +84,7 @@ export const ButtonType = styled(props => props.as)`
 						? readableColor(include.neutral['90'])
 						: include.neutral['90']};
 			  `
-			: props.type === 'light'
+			: props.theme === 'light'
 			? css`
 					background-color: ${include.neutral['00']};
 					border: 1px solid ${include.neutral['00']};
