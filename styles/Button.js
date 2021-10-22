@@ -17,21 +17,21 @@ export const ButtonType = styled(props => props.as)`
 	${({ size }) =>
 		size === 'xs'
 			? css`
-					${include.fontSizing('12px', '24px', '500')};
+					${include.fontSizing('12px', '24px', '600')};
 					padding: 2px 8px;
 			  `
 			: size === 'sm'
 			? css`
-					${include.fontSizing('13px', '26px', '500')};
+					${include.fontSizing('13px', '26px', '600')};
 					padding: 4px 10px;
 			  `
 			: size === 'lg'
 			? css`
-					${include.fontSizing('15px', '28px', '500')};
+					${include.fontSizing('15px', '28px', '600')};
 					padding: 6px 16px;
 			  `
 			: css`
-					${include.fontSizing('14px', '28px', '500')};
+					${include.fontSizing('14px', '28px', '600')};
 					padding: 6px 16px;
 			  `}
 

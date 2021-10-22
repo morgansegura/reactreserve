@@ -19,6 +19,7 @@ const MediaInput = ({
 	label,
 	placeholder,
 	media,
+	removePreview,
 	mediaPreview,
 	...props
 }) => {
@@ -29,7 +30,9 @@ const MediaInput = ({
 		lastModified
 	} = media
 
-	console.log(media)
+	const removeMedia = () => {
+		removePreview('')
+	}
 
 	return (
 		<Wrapper preview={Boolean(mediaPreview)}>
@@ -41,7 +44,7 @@ const MediaInput = ({
 								{label}
 							</Label>
 						)}
-						<Image src={mediaPreview} alt="" />
+						<Image src={mediaPreview} alt={mediaName} />
 					</>
 				)}
 			</Left>
@@ -70,7 +73,7 @@ const MediaInput = ({
 						<MediaFile>
 							<>
 								{Boolean(mediaPreview) ? (
-									<MediaPlaceholder>
+									<MediaPlaceholder onClick={removeMedia}>
 										Remove Image
 									</MediaPlaceholder>
 								) : (

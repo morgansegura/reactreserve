@@ -104,12 +104,10 @@ export const MediaDescription = styled.div`
 `
 
 export const Wrapper = styled.div`
-	${props => console.log(props.preview)}
 	${props =>
 		props.preview === true &&
 		css`
-			${include.grid('2', '1fr')}
-			grid-gap: ${include.sp['8']}
+			${include.grid()}
 
 			${Label} {
 				display: block;
@@ -142,18 +140,23 @@ export const Wrapper = styled.div`
 				grid-column: 1/12;
 
 				${include.media['lg']`
-					grid-column: 1/6;
+					grid-column: 1/8;
+				`}
+
+				${include.media['xl']`
+					grid-column: 1/9;
 				`}
 			}
 
 			${Right} {
-				display: flex;
-				flex-direction: column;
 				grid-column: 1/12;
 
 				${include.media['lg']`
 					margin-top: ${include.sp['4']};
-					grid-column: 7/12;
+					grid-column: 8/13;
+				`}
+				${include.media['xl']`
+					grid-column: 9/13;
 				`}
 			}
 		`}

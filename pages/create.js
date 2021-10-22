@@ -6,16 +6,12 @@ import { baseUrl, catchErrors } from 'utils'
 import {
 	Button,
 	Content,
-	Grid,
-	Image,
 	LoadingScreen as Screen,
 	MediaInput,
 	NumberInput,
 	TextArea,
 	TextInput
 } from 'components/core'
-
-import { ImageContainer, Img } from 'styles/Image'
 
 const INITIAL_PRODUCT = {
 	name: '',
@@ -58,6 +54,7 @@ const CreateProduct = () => {
 	const handleSubmit = async e => {
 		try {
 			e.preventDefault()
+			setError('')
 			setLoading(true)
 			const mediaUrl = await handleImageUpload()
 			const url = `${baseUrl}/api/product`

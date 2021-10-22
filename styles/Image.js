@@ -1,6 +1,10 @@
 import styled from 'styled-components'
-import * as include from 'styles/utilities'
 
-export const ImageContainer = styled.div``
+export const ImageContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+`
 
-export const Img = styled.img``
+export const Img = styled.img`
+	width: 100%;
+`
