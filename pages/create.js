@@ -1,6 +1,6 @@
 import React from 'react'
 import toast from 'react-hot-toast'
-import { WaveSpinner } from 'react-spinners-kit'
+import { WaveSpinner } from 'components/core/spinners/Wave'
 import axios from 'axios'
 import { baseUrl, catchErrors } from 'utils'
 import {

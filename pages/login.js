@@ -4,8 +4,9 @@ import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { baseUrl, catchErrors } from 'utils'
-import { WaveSpinner } from 'react-spinners-kit'
+import { WaveSpinner } from 'components/core/spinners/Wave'
 import { Button, LoadingScreen as Screen, TextInput } from 'components/core'
+import { handleLogin } from '../utils/auth'
 
 const INITIAL_USER = {
 	email: '',
@@ -36,13 +37,16 @@ const Signup = () => {
 		try {
 			setLoading(true)
 			setError('')
+			const url = `${baseUrl}/api/login`
+			const payload = { ...user }
+			const request = await axios.post(url, payload)
+			handleLogin(response.data)
 		} catch (error) {
 			catchErrors(error, setError)
 			toast.error(`${error.message || error}`)
-			console.log(error)
+			console.log(error.message)
 		} finally {
 			setLoading(false)
-			router.push('/')
 		}
 	}
 

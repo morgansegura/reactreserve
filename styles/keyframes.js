@@ -358,3 +358,15 @@ export const productCardSlideUp = keyframes`
     height: auto;
   }
 `
+export const motion = keyframes`
+    25% {
+        transform: skewY(25deg);
+    }
+    50% {
+        height: 100%;
+        margin-top: 0;
+    }
+    75% {
+        transform: skewY(-25deg);
+    }
+`

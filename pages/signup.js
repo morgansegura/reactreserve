@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import axios from 'axios'
 import { baseUrl, catchErrors, connectDb } from 'utils'
 import { handleLogin } from 'utils/auth'
-import { WaveSpinner } from 'react-spinners-kit'
+import { WaveSpinner } from 'components/core/spinners/Wave'
 import { Button, LoadingScreen as Screen, TextInput } from 'components/core'
 
 const INITIAL_USER = {
@@ -34,15 +34,14 @@ const Signup = () => {
 		e.preventDefault()
 		try {
 			setLoading(true)
-			setError('')
 			const url = `${baseUrl}/api/signup`
 			const payload = { ...user }
 			const response = await axios.post(url, payload)
 			handleLogin(response.data)
-		} catch (err) {
-			catchErrors(err, setError)
-			toast.error(`${error.message || error}`)
-			console.log(error)
+			setError('')
+		} catch (error) {
+			catchErrors(error, setError)
+			toast.error(`${error}`)
 		} finally {
 			setLoading(false)
 		}
@@ -68,6 +67,7 @@ const Signup = () => {
 					name="name"
 					value={user.name}
 					onChange={handleChange}
+					required
 				/>
 				<br />
 				<TextInput
@@ -78,6 +78,7 @@ const Signup = () => {
 					name="email"
 					value={user.email}
 					onChange={handleChange}
+					required
 				/>
 				<br />
 				<TextInput
@@ -88,6 +89,7 @@ const Signup = () => {
 					name="password"
 					value={user.password}
 					onChange={handleChange}
+					required
 				/>
 				<br />
 				<Button theme="warning" disabled={disabled} type="submit">
