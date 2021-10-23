@@ -29,7 +29,7 @@ const ProductAttributes = ({ user, _id, description, name }) => {
 		<>
 			<h3>About this product:</h3>
 			<div>{description}</div>
-			{!isRootOrAdmin && (
+			{isRootOrAdmin && (
 				<Button onClick={toggleModal} theme="danger" size="sm">
 					Delete Product
 				</Button>
