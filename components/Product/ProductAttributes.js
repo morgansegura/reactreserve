@@ -30,27 +30,32 @@ const ProductAttributes = ({ user, _id, description, name }) => {
 			<h3>About this product:</h3>
 			<div>{description}</div>
 			{isRootOrAdmin && (
-				<Button onClick={toggleModal} theme="danger" size="sm">
-					Delete Product
-				</Button>
-			)}
+				<>
+					<Button onClick={toggleModal} theme="danger" size="sm">
+						Delete Product
+					</Button>
 
-			{active && (
-				<Modal active={active} close={() => setActive(false)}>
-					<p>
-						Do you really want to delete {name}?{' '}
-						<Button
-							type="dark"
-							size="md"
-							outline
-							onClick={toggleModal}>
-							Cancel
-						</Button>
-						<Button type="danger" size="md" onClick={handleDelete}>
-							Delete
-						</Button>
-					</p>
-				</Modal>
+					{active && (
+						<Modal active={active} close={() => setActive(false)}>
+							<p>
+								Do you really want to delete {name}?{' '}
+								<Button
+									type="dark"
+									size="md"
+									outline
+									onClick={toggleModal}>
+									Cancel
+								</Button>
+								<Button
+									type="danger"
+									size="md"
+									onClick={handleDelete}>
+									Delete
+								</Button>
+							</p>
+						</Modal>
+					)}
+				</>
 			)}
 		</>
 	)

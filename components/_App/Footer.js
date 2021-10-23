@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { roleType } from 'utils/auth'
-import { Container } from 'components/core'
+import { roleType, handleLogout } from 'utils/auth'
+import { Button, Container } from 'components/core'
 import {
 	FooterCopyright,
 	Logo,
@@ -9,13 +9,13 @@ import {
 	Nav,
 	NavItem,
 	Footer as Wrapper
-} from '@styles/Footer'
+} from 'styles/Footer'
 
 const Footer = ({ user }) => {
 	const router = useRouter()
 	const { isRootOrAdmin } = roleType(user)
 
-	function isActive(route) {
+	const isActive = route => {
 		return router.pathname === route
 	}
 
@@ -63,6 +63,9 @@ const Footer = ({ user }) => {
 										</NavItem>
 									</a>
 								</Link>
+								<Button size="xs" onClick={handleLogout}>
+									Logout
+								</Button>
 							</>
 						) : (
 							<>

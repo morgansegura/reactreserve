@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Router, { useRouter } from 'next/router'
-import { roleType } from 'utils/auth'
+import { roleType, handleLogout } from 'utils/auth'
 import NProgress from 'nprogress'
-import { Container } from 'components/core'
-import { Logo, Menu, Nav, NavItem, Header as Wrapper } from '@styles/Header'
+import { Button, Container } from 'components/core'
+import { Logo, Menu, Nav, NavItem, Header as Wrapper } from 'styles/Header'
 
 Router.onRouteChangeStart = () => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()
@@ -60,6 +60,9 @@ export default function Header({ user }) {
 										</NavItem>
 									</a>
 								</Link>
+								<Button size="xs" onClick={handleLogout}>
+									Logout
+								</Button>
 							</>
 						) : (
 							<>
