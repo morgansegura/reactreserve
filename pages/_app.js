@@ -52,7 +52,7 @@ class MyApp extends App {
 
 	syncLogout = event => {
 		if (event.key === 'logout') {
-			Router.push('/logout')
+			Router.push('/login')
 		}
 	}
 
