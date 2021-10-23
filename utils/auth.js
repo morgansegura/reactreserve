@@ -14,3 +14,10 @@ export function redirectUser(ctx, location) {
 		Router.push(location)
 	}
 }
+
+export function roleType(user) {
+	const isRoot = user && user.role === 'root'
+	const isAdmin = user && user.role === 'admin'
+	const isRootOrAdmin = isAdmin || isRoot
+	return { isRoot, isAdmin, isRootOrAdmin }
+}

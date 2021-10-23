@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Router, { useRouter } from 'next/router'
+import { roleType } from 'utils/auth'
 import NProgress from 'nprogress'
 import { Container } from 'components/core'
 import { Logo, Menu, Nav, NavItem, Header as Wrapper } from '@styles/Header'
@@ -10,6 +11,7 @@ Router.onRouteChangeError = () => NProgress.done()
 
 export default function Header({ user }) {
 	const router = useRouter()
+	const { isRootOrAdmin } = roleType(user)
 
 	function isActive(route) {
 		return router.pathname === route
@@ -41,13 +43,16 @@ export default function Header({ user }) {
 										</NavItem>
 									</a>
 								</Link>
-								<Link href="/create">
-									<a>
-										<NavItem active={isActive('/create')}>
-											Create
-										</NavItem>
-									</a>
-								</Link>
+								{isRootOrAdmin && (
+									<Link href="/create">
+										<a>
+											<NavItem
+												active={isActive('/create')}>
+												Create
+											</NavItem>
+										</a>
+									</Link>
+								)}
 								<Link href="/account">
 									<a>
 										<NavItem active={isActive('/account')}>

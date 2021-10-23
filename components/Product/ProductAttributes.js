@@ -1,14 +1,16 @@
 import React from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { roleType } from 'utils/auth'
 import { useLockBodyScroll, useToggle } from 'react-use'
 import baseUrl from 'utils/baseUrl'
 import { Button, Modal } from 'components/core'
 
-const ProductAttributes = ({ _id, description, name }) => {
+const ProductAttributes = ({ user, _id, description, name }) => {
 	const [active, setActive] = React.useState(false)
 	const [locked, toggleLocked] = useToggle(false)
 	const router = useRouter()
+	const { isRootOrAdmin } = roleType(user)
 
 	useLockBodyScroll(locked)
 
@@ -27,9 +29,11 @@ const ProductAttributes = ({ _id, description, name }) => {
 		<>
 			<h3>About this product:</h3>
 			<div>{description}</div>
-			<Button onClick={toggleModal} type="danger" size="sm">
-				Delete Product
-			</Button>
+			{!isRootOrAdmin && (
+				<Button onClick={toggleModal} theme="danger" size="sm">
+					Delete Product
+				</Button>
+			)}
 
 			{active && (
 				<Modal active={active} close={() => setActive(false)}>

@@ -1,6 +1,6 @@
 import { AddProductToCart } from 'components/Product'
 
-const ProductSummary = ({ name, mediaUrl, _id, price, sku }) => {
+const ProductSummary = ({ user, name, mediaUrl, _id, price, sku }) => {
 	return (
 		<>
 			<div>{_id}</div>

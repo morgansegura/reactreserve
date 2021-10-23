@@ -2,11 +2,11 @@ import axios from 'axios'
 import baseUrl from 'utils/baseUrl'
 import { ProductAttributes, ProductSummary } from 'components/Product'
 
-const Product = ({ product }) => {
+const Product = ({ user, product }) => {
 	return (
 		<>
 			<ProductSummary {...product} />
-			<ProductAttributes {...product} />
+			<ProductAttributes user={user} {...product} />
 		</>
 	)
 }
