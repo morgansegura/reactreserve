@@ -2,7 +2,7 @@ import App from 'next/app'
 import { withRouter } from 'next/router'
 import { Layout, Scaffold } from 'components/_App'
 import { GlobalStyle } from 'styles/globalStyles'
-import { parseCookies } from 'nookies'
+import { parseCookies, destroyCookie } from 'nookies'
 import { redirectUser } from 'utils/auth'
 import { baseUrl } from 'utils'
 import axios from 'axios'
@@ -32,6 +32,8 @@ class MyApp extends App {
 				pageProps.user = user
 			} catch (error) {
 				console.error('Error getting current user', error)
+				destroyCookie(ctx, 'token')
+				redirectUser(ctx, '/login')
 			}
 		}
 		return { pageProps }
