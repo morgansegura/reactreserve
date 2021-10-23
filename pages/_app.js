@@ -1,5 +1,5 @@
 import App from 'next/app'
-import { withRouter } from 'next/router'
+import Router, { withRouter } from 'next/router'
 import { Layout, Scaffold } from 'components/_App'
 import { GlobalStyle } from 'styles/globalStyles'
 import { parseCookies, destroyCookie } from 'nookies'
@@ -44,6 +44,16 @@ class MyApp extends App {
 			}
 		}
 		return { pageProps }
+	}
+
+	componentDidMount() {
+		window.addEventListener('storage', this.syncLogout)
+	}
+
+	syncLogout = event => {
+		if (event.key === 'logout') {
+			Router.push('/logout')
+		}
 	}
 
 	render() {
