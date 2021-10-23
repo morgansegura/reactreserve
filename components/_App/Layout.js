@@ -4,7 +4,7 @@ import Head from 'next/head'
 import { Footer, HeadContent, Header } from 'components/_App'
 import { Container } from 'components/core'
 
-function Layout({ children }) {
+function Layout({ children, user }) {
 	return (
 		<>
 			<Head>
@@ -19,9 +19,9 @@ function Layout({ children }) {
 				<link rel="stylesheet" type="text/css" href="/nprogress.css" />
 				<title>ReactReserve</title>
 			</Head>
-			<Header />
+			<Header user={user} />
 			<Container>{children}</Container>
-			<Footer />
+			<Footer user={user} />
 			<Toaster
 				position="bottom-center"
 				reverseOrder={false}

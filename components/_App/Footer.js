@@ -11,9 +11,8 @@ import {
 	Footer as Wrapper
 } from '@styles/Footer'
 
-const Footer = () => {
+const Footer = ({ user }) => {
 	const router = useRouter()
-	const user = true
 
 	function isActive(route) {
 		return router.pathname === route

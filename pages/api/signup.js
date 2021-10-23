@@ -4,6 +4,7 @@ import { connectDb } from 'utils'
 import isEmail from 'validator/lib/isEmail'
 import isLength from 'validator/lib/isLength'
 import User from 'models/User'
+import Cart from 'models/Cart'
 
 connectDb()
 
@@ -41,6 +42,7 @@ export default async (req, res) => {
 		}).save()
 		console.log({ newUser })
 
+		await new Cart({ user: newUser._id }).save()
 		// create token for new user
 		const token = jwt.sign(
 			{ userId: newUser._id },
