@@ -39,12 +39,12 @@ const Signup = () => {
 			setError('')
 			const url = `${baseUrl}/api/login`
 			const payload = { ...user }
-			const request = await axios.post(url, payload)
+			const response = await axios.post(url, payload)
 			handleLogin(response.data)
 		} catch (error) {
 			catchErrors(error, setError)
-			toast.error(`${error.message || error}`)
-			console.log(error.message)
+			toast.error(`${error}`)
+			console.log(error)
 		} finally {
 			setLoading(false)
 		}

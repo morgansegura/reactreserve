@@ -10,7 +10,7 @@ export default async (req, res) => {
 
 	try {
 		// Check if user exists
-		const user = await User.findOne({ email }).select('+passowrd')
+		const user = await User.findOne({ email }).select('+password')
 		// --if not, return error
 		if (!user) {
 			return res.status(404).send('No user exists with that email')
@@ -27,8 +27,8 @@ export default async (req, res) => {
 			// send token to client
 			res.status(200).json(token)
 		} else {
-			res.status(401).send('Passwords do not match')
 			console.log(error)
+			res.status(401).send('Passwords do not match')
 		}
 	} catch (error) {
 		res.status(401).send('Error logging in user')
