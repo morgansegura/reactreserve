@@ -1,6 +1,6 @@
 import React from 'react'
-
-import { Button, Container, Content } from 'components/core'
+import { Button } from 'components/core'
+import { Container, Content } from 'styles/Container'
 import { ModalWrapper, ModalContent, ModalContainer } from 'styles/Modal'
 
 const Modal = ({ children, close }) => {

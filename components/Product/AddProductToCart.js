@@ -1,15 +1,21 @@
+import React from 'react'
+import { Button } from 'components/core'
+import { NumberInput } from 'components/core'
+import { AddProduct } from 'styles/ProductAttributes'
+
 const AddProductToCart = () => {
+	const [quantity, setQuantity] = React.useState(1)
 	return (
-		<>
-			<input
+		<AddProduct>
+			<NumberInput
 				type="number"
 				min="1"
 				placeholder="Quantity"
-				value={1}
-				onChange={() => console.log('Add to cart')}
+				value={quantity}
+				onChange={e => setQuantity(Number(e.target.value))}
 			/>
-			<button>Add to Cart</button>
-		</>
+			<Button theme="warning">Add to Cart</Button>
+		</AddProduct>
 	)
 }
 

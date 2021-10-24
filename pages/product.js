@@ -1,13 +1,13 @@
 import axios from 'axios'
 import baseUrl from 'utils/baseUrl'
-import { ProductAttributes, ProductSummary } from 'components/Product'
+import { ProductAttributes } from 'components/Product'
+import { Wrapper } from 'styles/ProductAttributes'
 
 const Product = ({ user, product }) => {
 	return (
-		<>
-			<ProductSummary {...product} />
+		<Wrapper>
 			<ProductAttributes user={user} {...product} />
-		</>
+		</Wrapper>
 	)
 }
 

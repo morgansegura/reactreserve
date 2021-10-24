@@ -2,7 +2,8 @@ import Link from 'next/link'
 import Router, { useRouter } from 'next/router'
 import { roleType, handleLogout } from 'utils/auth'
 import NProgress from 'nprogress'
-import { Button, Container } from 'components/core'
+import { Button } from 'components/core'
+import { Container } from 'styles/Container'
 import { Logo, Menu, Nav, NavItem, Header as Wrapper } from 'styles/Header'
 
 Router.onRouteChangeStart = () => NProgress.start()

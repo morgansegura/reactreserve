@@ -2,7 +2,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import Head from 'next/head'
 
 import { Footer, HeadContent, Header } from 'components/_App'
-import { Container } from 'components/core'
+import { Container, Main, Wrapper } from 'styles/Container'
 
 function Layout({ children, user }) {
 	return (
@@ -19,9 +19,13 @@ function Layout({ children, user }) {
 				<link rel="stylesheet" type="text/css" href="/nprogress.css" />
 				<title>ReactReserve</title>
 			</Head>
-			<Header user={user} />
-			<Container>{children}</Container>
-			<Footer user={user} />
+			<Wrapper>
+				<Header user={user} />
+				<Main>
+					<Container style={{ flex: 1 }}>{children}</Container>
+				</Main>
+				<Footer user={user} />
+			</Wrapper>
 			<Toaster
 				position="bottom-center"
 				reverseOrder={false}
