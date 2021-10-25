@@ -370,3 +370,13 @@ export const motion = keyframes`
         transform: skewY(-25deg);
     }
 `
+
+export const rotate = keyframes`
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(1440deg);
+        opacity: 0.05;
+    }
+`

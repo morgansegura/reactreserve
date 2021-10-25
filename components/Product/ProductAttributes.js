@@ -38,7 +38,7 @@ const ProductAttributes = ({
 							<strong>SKU:</strong> {sku}
 						</ListItem>
 					</ListItems>
-					<AddProductToCart productId={_id} />
+					<AddProductToCart user={user} productId={_id} />
 				</AttributeListGrid>
 				<ProductSummary {...product} />
 			</AttrbuteContainer>

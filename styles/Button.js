@@ -10,6 +10,23 @@ export const ButtonType = styled(props => props.as)`
 	letter-spacing: 0.02857em;
 	transition: opacity 0.3s ease-out;
 
+	${({ radius }) =>
+		radius === 'md'
+			? css`
+					${include.radius['md']};
+			  `
+			: radius === 'none'
+			? css`
+					${include.radius['none']};
+			  `
+			: radius === 'round'
+			? css`
+					${include.radius['round']};
+			  `
+			: css`
+					${include.radius['sm']};
+			  `}
+
 	&:hover {
 		opacity: 0.75;
 	}
@@ -103,31 +120,20 @@ export const ButtonType = styled(props => props.as)`
 						: include.neutral['60']};
 			  `}
 
+	${({ loading }) =>
+		loading === true &&
+		css`
+			pointer-events: none;
+		`}
+
 	${({ disabled }) =>
 		disabled === true &&
 		css`
 			pointer-events: none;
 			background-color: ${include.neutral['10']};
-			border: 1px solid ${include.neutral['00']};
-			color: ${include.neutral['40']};
+			border: 1px solid transparent;
+			color: ${include.neutral['90']};
 		`}
-
-	${({ radius }) =>
-		radius === 'md'
-			? css`
-					${include.radius['md']};
-			  `
-			: radius === 'none'
-			? css`
-					${include.radius['none']};
-			  `
-			: radius === 'round'
-			? css`
-					${include.radius['round']};
-			  `
-			: css`
-					${include.radius['sm']};
-			  `}
 
 	${({ outline }) =>
 		outline

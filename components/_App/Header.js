@@ -54,14 +54,10 @@ export default function Header({ user }) {
 										</a>
 									</Link>
 								)}
-								<Link href="/account">
-									<a>
-										<NavItem active={isActive('/account')}>
-											Account
-										</NavItem>
-									</a>
-								</Link>
-								<Button size="xs" onClick={handleLogout}>
+								<Button
+									size="xs"
+									theme="primary"
+									onClick={handleLogout}>
 									Logout
 								</Button>
 							</>
@@ -74,13 +70,12 @@ export default function Header({ user }) {
 										</NavItem>
 									</a>
 								</Link>
-								<Link href="/login">
-									<a>
-										<NavItem active={isActive('/login')}>
-											Login
-										</NavItem>
-									</a>
-								</Link>
+								<Button
+									size="xs"
+									theme="primary"
+									onClick={() => router.push('/login')}>
+									Login
+								</Button>
 							</>
 						)}
 					</Nav>
